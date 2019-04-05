@@ -1,8 +1,12 @@
 package fr.hoc.dap.server;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * Global instance for run the application.
  */
+@SpringBootApplication
 abstract class Launcher {
     /**@author house log*/
 
@@ -13,8 +17,8 @@ abstract class Launcher {
      * @param args arguments exceptions
      * @throws Exception .
      */
-
     public static void main(final String[] args) throws Exception {
+        SpringApplication.run(Launcher.class, args);
 
         /*LOG.error("Ceci est une erreur :(");
         LOG.debug("Ceci devrait être un bug ;)");*/
