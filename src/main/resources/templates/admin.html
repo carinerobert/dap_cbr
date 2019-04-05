@@ -1,0 +1,69 @@
+<html>
+
+<head>
+<title>Dap</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/dap.css}"
+
+	href="../static/css/dap.css">
+
+
+</head>
+
+<body>
+	<span> Bonjour,</span>
+
+	<br />
+	<br />
+
+
+
+
+	<br />
+	<br />
+
+<div class="container">
+
+	<table border="1" width="50%">
+		<tbody>
+			<tr class="ligne-impaire" >
+				<td width="10%" align="center">Id</td>
+				<td width="20%" align="center">Token</td>
+				<td width="10%" align="center">Expire(en jours)</td>
+				<td width="20%" align="center">Refresh</td>
+				<td width="10%" align="center">Actions</td>
+			</tr>
+
+			<tr th:each="entry : ${users}">
+				<td th:text="${entry.key}"></td>
+				<td th:text="${entry.value.accessToken}"></td>
+				<td th:text=" ${entry.value.expirationTimeMilliseconds /86400000 }"></td>
+				<td th:text=" ${entry.value.refreshToken}"></td>
+				<td><a th:href="@{/delete_user(user = ${user.user})}">Delete</a></td>
+				
+
+			
+			<!--  <td>	
+			 <a th:href="@{/add_user + $(personId=${entry.key})} " class="btn btn-danger"></a>
+				<form th:action="@{delete_user}" method="post" th:object="${users}">
+					<input type="hidden" th:field="${user/add_user + $(personId=${entry.key})}" />
+					<button type="submit" value="Submit" class="btn btn-danger">Add User</button>	
+					
+				 <a th:href="@{/delete_user + $(personId=${entry.key})}"></a>
+			 	<form th:action="@{delete_user}" method="post" th:object="${user}">
+					<input type="hidden" th:field="${delete_user}" />
+					<button align="center" type="submit" value="Submit" class="btn btn">Delete</button>		
+				</form> 		
+			
+			</td>		-->
+
+	</tr>
+		</tbody>
+	</table>
+
+
+</div>
+
+</body>
+
+
+</html>

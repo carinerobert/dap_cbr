@@ -60,7 +60,7 @@ public class GoogleService {
 
     /**@author house httpTransport ok.
      * @throws IOException ?
-     * @throws GeneralSecurityException ?
+     * @throws GeneralSecurityException with a specified message, wich is saved for later retrieval by the #getCause() method.
      * @return autorisations .
      * @param userKey .
      */

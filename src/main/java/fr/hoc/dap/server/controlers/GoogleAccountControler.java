@@ -56,7 +56,7 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
      * @param  session HTTP protocole.
      * @return the view ask to display.
      * @throws ServletException When Google account is unable to connected to DaP.
-     * @throws GeneralSecurityException If an error occurred.
+     * @throws GeneralSecurityException If an error occurred  non traited by try/catch.
      */
     @RequestMapping("/oAuth2Callback")
     public String oAuthCallbackoAuthCallback(@RequestParam final String code, final HttpServletRequest request,
