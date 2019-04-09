@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +27,8 @@ import fr.hoc.dap.server.services.AdminService;
  */
 @Controller
 public class AdminControler {
+    /**@author display errors.*/
+    private static final Logger LOG = LogManager.getLogger();
 
     @Autowired
     private AdminService admSrv;
@@ -37,6 +41,8 @@ public class AdminControler {
         for (String key : keys) {
             StoredCredential value = users.get(key);
             mapUsers.put(key, value);
+            LOG.warn("Trying to store a NULL AccessToken for user : " + keys);
+
         }
 
         model.addAttribute("users", mapUsers);
@@ -47,6 +53,7 @@ public class AdminControler {
     public String deleteUser(final String userkey) throws IOException, GeneralSecurityException {
 
         DataStore<StoredCredential> user = admSrv.deleteUser(userkey);
+        LOG.warn("Trying to delete unkown user : " + user);
 
         return "redirect:/admin";
     }

@@ -40,7 +40,7 @@ import fr.hoc.dap.server.services.GoogleService;
 @Controller
 public class GoogleAccountControler<ActionContext> extends GoogleService {
 
-    /**@author house log for display errors.*/
+    /**@author display errors.*/
     private static final Logger LOG = LogManager.getLogger();
 
     /** to protect user's data. **/
