@@ -25,9 +25,9 @@ import com.google.api.client.http.GenericUrl;
 import fr.hoc.dap.server.services.GoogleService;
 
 /**
- * The GoogleAccountController programme implements an application (Dap cmdline)
+ * The GoogleAccountController programme implements a web application.
  * that displays mails & events from an user account on google.
- * it could add new user too !
+ * it could add, delete or access to the details of user too.
  * @author house_Mecrob
  * @version 1.0
  * @since 2019-01-21
@@ -50,13 +50,14 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
     private static final int SENSIBLE_DATA_LAST_CHAR = 7;
 
     /**
-     * to Handle the Google response.
+     * to Handle the Google response :
      * @param request handle google response by protocole HTTP.
      * @param code (encoded) use by Google, protocole & time request.
      * @param  session HTTP protocole.
      * @return the view ask to display.
      * @throws ServletException When Google account is unable to connected to DaP.
-     * @throws GeneralSecurityException If an error occurred  non traited by try/catch.
+     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
+     * wich is saved for later retrieval by the #getCause() method.
      */
     @RequestMapping("/oAuth2Callback")
     public String oAuthCallbackoAuthCallback(@RequestParam final String code, final HttpServletRequest request,
@@ -98,7 +99,8 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
      * @param request protocole http for request.
      * @param session activate by the HTTP protocole.
      * @return the view to Display (on Error).
-     * @throws GeneralSecurityException if  an erroroccured.
+     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
+     * wich is saved for later retrieval by the #getCause() method.
      */
     @RequestMapping("/account/add/{userId}")
     public String addAccount(@PathVariable final String userId, final HttpServletRequest request,

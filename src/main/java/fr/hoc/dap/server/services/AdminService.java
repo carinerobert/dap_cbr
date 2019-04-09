@@ -8,13 +8,20 @@ import org.springframework.stereotype.Service;
 import com.google.api.client.auth.oauth2.StoredCredential;
 import com.google.api.client.util.store.DataStore;
 
-/**@author house httpTransport ok.
- * @param <StoredCredentials>
- * @throws IOException ?
- * @throws GeneralSecurityException ?
- * @return autorisations .
- * @param userKey .
- */
+/**
+* The configuration programme implements a web application
+* that displays users details account on google services.
+* @author house_Mecrob
+* @version 1.0
+* @since 2019-01-21
+* 
+* @param <StoredCredentials>
+* @throws IOException If there was an IO error during parsing exception need to be treated.
+* @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
+* wich is saved for later retrieval by the #getCause() method.
+* @return autorisations .
+* @param userKey .
+*/
 @Service
 public class AdminService extends GoogleService {
 
@@ -23,12 +30,14 @@ public class AdminService extends GoogleService {
         return datas;
     }
 
-    public void deleteUser(String user) throws IOException, GeneralSecurityException {
-        getFlow().getCredentialDataStore().delete(user);
+    public DataStore<StoredCredential> deleteUser(String user) throws IOException, GeneralSecurityException {
+        DataStore<StoredCredential> datas = getFlow().getCredentialDataStore().delete(user);
+
+        return datas;
     }
 
-    //    public void addUser(String personId) throws IOException, GeneralSecurityException {
-    //        getFlow().getCredentialDataStore().add(personId);
+    //    public void addUser(String user) throws IOException, GeneralSecurityException {
+    //        getFlow().getCredentialDataStore().add(user);
     //    }
 
 }

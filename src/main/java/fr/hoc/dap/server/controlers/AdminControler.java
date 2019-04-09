@@ -10,14 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.api.client.auth.oauth2.StoredCredential;
 import com.google.api.client.util.store.DataStore;
 
 import fr.hoc.dap.server.services.AdminService;
 
+/**
+ * The configuration programme implements a web application
+ * that displays users details account on google services.
+ * @author house_Mecrob
+ * @version 1.0
+ * @since 2019-01-21
+ */
 @Controller
 public class AdminControler {
 
@@ -38,21 +43,12 @@ public class AdminControler {
         return "admin";
     }
 
-    @RequestMapping(value = "/delete_user", method = RequestMethod.DELETE)
-    public String handleDeleteUser(@RequestParam(name = "user") String user)
-            throws IOException, GeneralSecurityException {
+    @RequestMapping
+    public String deleteUser(final String userkey) throws IOException, GeneralSecurityException {
 
-        admSrv.deleteUser(user);
+        DataStore<StoredCredential> user = admSrv.deleteUser(userkey);
 
         return "redirect:/admin";
     }
 
-    //    @RequestMapping(value = "/add_user", method = RequestMethod.GET)
-    //    public String addUser(@RequestParam(name = "user") String personId)
-    //            throws IOException, GeneralSecurityException {
-    //
-    //        admSrv.addUser(personId);
-    //
-    //        return "redirect:/admin";
-    //    }
 }

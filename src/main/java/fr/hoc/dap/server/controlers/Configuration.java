@@ -3,9 +3,11 @@ package fr.hoc.dap.server.controlers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * The configuration programme implements an application (Dap cmdline)
+ * The configuration programme implements a web application
  * that displays mails & events from an user account on google.
  * it could add new user too !
+ * You could find details of each user's account by admin controler
+ * display on your browser.
  * @author house_Mecrob
  * @version 1.0
  * @since 2019-01-21
@@ -14,7 +16,7 @@ public class Configuration {
 
     /**
      * @param indicate app name.
-     * @param JsonFactory indicate where to stock credentials.
+     * @param JsonFactory neede to be treat. If value = null <code>null</code> an exception occur.
      * @param TOKENS_DIRECTORY_PATH indicate where to stock tokens.
      **/
     protected static final String APPLICATION_NAME = "House Of Code *}";
@@ -41,7 +43,7 @@ public class Configuration {
     private static String tokensDirectoryPath;
 
     /**
-     * Config constructeur.
+     * Config initialization.
      */
     @Autowired
     public Configuration() {
@@ -49,7 +51,7 @@ public class Configuration {
     }
 
     /**
-     * initialize config.
+     * Initialize config, add all values needed.
      */
     private void init() {
         Configuration.applicationName = APPLICATION_NAME;
@@ -58,7 +60,7 @@ public class Configuration {
     }
 
     /**
-     * @return the name of the app you choose in config.
+     * @return the name of the app choosen in config.
      */
     public String getApplicationName() {
 
@@ -67,7 +69,7 @@ public class Configuration {
     }
 
     /**
-     * @param newApplicationName the applicationName to set.
+     * @param newApplicationName the applicationName to set, or needed to be changed.
      */
     public void setApplicationName(final String newApplicationName) {
         Configuration.applicationName = newApplicationName;

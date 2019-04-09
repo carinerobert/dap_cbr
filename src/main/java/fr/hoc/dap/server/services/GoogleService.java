@@ -27,7 +27,7 @@ import fr.hoc.dap.server.controlers.Configuration;
 /**
 * The CalendarService programme implements an application (Dap cmdline)
 * that displays mails & events from an user account on google.
-* it could add new user too !
+* it could add, delete or access to the details of user too.
 * @author house_Mecrob
 * @version 1.0
 * @since 2019-01-21
@@ -58,9 +58,10 @@ public class GoogleService {
     /** @param JsonFactorye pour autorisation */
     protected static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
-    /**@author house httpTransport ok.
-     * @throws IOException ?
-     * @throws GeneralSecurityException with a specified message, wich is saved for later retrieval by the #getCause() method.
+    /**
+     * @throws IOException If there was an IO error during parsing exception need to be treated.
+     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
+     * wich is saved for later retrieval by the #getCause() method.
      * @return autorisations .
      * @param userKey .
      */
@@ -75,10 +76,10 @@ public class GoogleService {
     }
 
     /**
-     * .
-     * @return .
-     * @throws IOException .
-     * @throws GeneralSecurityException .
+     * @return strings.
+     * @throws IOException If there was an IO error during parsing exception need to be treated.
+     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
+     * wich is saved for later retrieval by the #getCause() method.
      */
     public GoogleAuthorizationCodeFlow getFlow() throws GeneralSecurityException, IOException {
         // gère les autorisations google.

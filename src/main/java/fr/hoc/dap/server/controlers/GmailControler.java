@@ -1,5 +1,7 @@
 package fr.hoc.dap.server.controlers;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.hoc.dap.server.services.GmailService;
 
 /**
- * The eventController programme implements an application (Dap cmdline)
+ * The eventController programme implements a web application.
  * that displays mails & events from an user account on google.
- * it could add new user too !
+ * it could add, delete or access to the details of user too.
  * @author house_Mecrob
  * @version 1.0
  * @since 2019-01-21
@@ -25,8 +27,8 @@ import fr.hoc.dap.server.services.GmailService;
 public class GmailControler {
     /**
      * @RequestMapping for mapping web requests onto methods in request-handling with flexible method signatures.
-     * @return the mapped request.
-     * @throws Exception If there was an IO error during parsing.
+     * @return the string needed for mapping.
+     * @throws IOException If there was an IO error during parsing exception need to be treated.
      */
     @Autowired
     private GmailService gmailSrv;
@@ -36,9 +38,10 @@ public class GmailControler {
      * modifications to the display of the app should be done
      * by overriding this method.
      * <p>
-     * @param userKey please set for user in the app cmdline.
-     * @return the unread email for a user.
-     * @throws Exception If there was an IO error during parsing .
+     * @param userKey, please set for user in the app.
+     * @return the number of unread email for a user.
+     * @throws still treat the thread till a Exception occurred, treated with a specified message, 
+     * wich is saved for later retrieval by the #getCause() method.
      */
     @RequestMapping("/email/nbunread")
     public Integer index(@RequestParam() final String userKey) throws Exception {

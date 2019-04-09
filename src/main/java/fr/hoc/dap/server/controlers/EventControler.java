@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.hoc.dap.server.services.CalendarService;
 
 /**
- * The eventController programme implements an application (Dap cmdline)
+ * The eventController programme implements  a web application
  * that displays mails & events from an user account on google.
- * it could add new user too !
+ * it could add, or delete user too.
  * @author house_Mecrob
  * @version 1.0
  * @since 2019-01-21
@@ -30,7 +30,7 @@ public class EventControler {
     /**
      * @RequestMapping for mapping web requests onto methods in request-handling with flexible method signatures.
      * @return the mapped request.
-     * @throws Exception If there was an IO error during parsing.
+     * @throws IOException If there was an IO error during parsing exception need to be treated.
      */
     @Autowired
     private CalendarService eventSrv;
@@ -40,11 +40,12 @@ public class EventControler {
      * modifications to the display of the app should be done
      * by overriding this method.
      * <p>
-     * @param nb please set the default value.
-     * @param userKey please set for user in the app cmdline.
-     * @return the next event for a user.
-     * @throws IOException If there was an IO error during parsing .
-     * @throws GeneralSecurityException If an error occurred.
+     * @param please set a number in the default value.
+     * @param userKey please set for user in the app.
+     * @return the next event for a user, as a string.
+     * @throws IOException If there was an IO error during parsing exception need to be treated.
+     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
+     * wich is saved for later retrieval by the #getCause() method.
      */
     @RequestMapping("/event/next")
     public String displayNextEvent(@RequestParam() final String userKey,

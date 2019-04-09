@@ -17,13 +17,13 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
 /**
- * The CalendarService programme implements an application (Dap cmdline)
+ * The CalendarService programme implements a web application.
  * that displays mails & events from an user account on google.
- * it could add new user too !
+ * it could add, delete or access to the details of user too.
  * @author house_Mecrob
  * @version 1.0
  * @since 2019-01-21
- * public class Service extends Object provide the client view of a Web service.
+ * Provide the client view of a Web service.
  * Service acts as a factory of the following : Proxies for a target service endpoint.
  * Instances of Dispatch for dynamic message-oriented invocation of a remote operation.
  * The ports available on a service can be enumerated using the getPorts method. Alternatively,
@@ -42,10 +42,10 @@ public final class CalendarService extends GoogleService {
 
     /**
      * Build API client service.
-     * @param userKey .
-     * @return .
-     * @throws IOException exceptions.
-     * @throws GeneralSecurityException sécurité
+     * @param get user as a string.
+     * @return return userkey as a string.
+     * @throws IOException If there was an IO error during parsing exception need to be treated.
+    * @throws still tread the thread till a GeneralSecurityException occurred.
      */
     public Calendar getService(final String userKey) throws IOException, GeneralSecurityException {
         NetHttpTransport httpTransport;
@@ -65,9 +65,10 @@ public final class CalendarService extends GoogleService {
 
     /**
      * Build API client service.
-     * @return .
-     * @throws IOException exceptions.
-     * @throws GeneralSecurityException sécurité
+     * @return string of the instance .
+     * @throws IOException If there was an IO error during parsing exception need to be treated.
+     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
+     * wich is saved for later retrieval by the #getCause() method.
      */
     public CalendarService getInstance() throws IOException, GeneralSecurityException {
         CalendarService service = null;
@@ -75,15 +76,14 @@ public final class CalendarService extends GoogleService {
 
     }
 
-    /**
-     * @author house.
-     * @param nb .
-     * @param userKey.
-     * @param userKey recupereation user .
-     * @throws IOException .
-     * @throws GeneralSecurityException .
-     * @return next event.
-     */
+    /** 
+    * @param the next event for a user, as a string..
+    * @param userKey please set for user in the app.
+    * @param userKey recupereation user .
+    * @throws IOException If there was an IO error during parsing exception need to be treated.
+    * @throws still treat the thread till a GeneralSecurityException occurred.
+    * @return next event.
+    */
     public String displayNextEvent(final Integer nb, final String userKey)
             throws IOException, GeneralSecurityException {
         /** DateTime List the next 10 events from the primary calendar.*/
@@ -91,14 +91,14 @@ public final class CalendarService extends GoogleService {
         DateTime now = new DateTime(System.currentTimeMillis());
 
         /**
-         * @throws IOException .
-         * @throws GeneralSecurityException .
+        * @throws IOException If there was an IO error during parsing exception need to be treated.
+        * @throws still tread the thread till a GeneralSecurityException occurred.
          */
         Events events = service.events().list("primary").setMaxResults(1).setTimeMin(now).setOrderBy("startTime")
                 .setSingleEvents(true).execute();
 
         /**
-         * List Event list event .
+         * List Event return the event as a list.
          */
         List<Event> items = events.getItems();
         String rdv;

@@ -30,7 +30,8 @@
 				<td width="20%" align="center">Token</td>
 				<td width="10%" align="center">Expire(en jours)</td>
 				<td width="20%" align="center">Refresh</td>
-				<td width="10%" align="center">Actions</td>
+				<td width="10%" align="center">Delete</td>
+				
 			</tr>
 
 			<tr th:each="entry : ${users}">
@@ -38,7 +39,7 @@
 				<td th:text="${entry.value.accessToken}"></td>
 				<td th:text=" ${entry.value.expirationTimeMilliseconds /86400000 }"></td>
 				<td th:text=" ${entry.value.refreshToken}"></td>
-				<td><a th:href="@{/delete_user(user = ${user.user})}">Delete</a></td>
+				<td><a th:href="@{/delete/user(userkey=${entry.key})}">Delete</a></td>
 				
 
 			

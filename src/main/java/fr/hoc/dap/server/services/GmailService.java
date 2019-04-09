@@ -14,9 +14,9 @@ import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 
 /**
-* The GmailService programme implements an application (Dap cmdline)
+* The GmailService programme implements a webapplication.
 * that displays mails & events from an user account on google.
-* it could add new user too !
+* it could add, delete or access to the details of user too.
 * @author house_Mecrob
 * @version 1.0
 * @since 2019-01-21
@@ -35,8 +35,8 @@ import com.google.api.services.gmail.model.Message;
 public final class GmailService extends GoogleService {
 
     /**
-     * @param userKey .
-     * @return .
+     * @param set the userKey as a string.
+     * @return return userkey as a string.
      * @throws GeneralSecurityException cannot connect to google sever.
      * @throws IOException if the credentials.json file cannot be found.
      */
@@ -54,7 +54,7 @@ public final class GmailService extends GoogleService {
      * @param userKey DaP user ID
      * @param userId Google User ID
      * @param query .
-     * @return .
+     * @return result.
      * @throws IOException if the credentials.json file cannot be found.
      * @throws GeneralSecurityException cannot connect to google sever.
      */
@@ -79,8 +79,9 @@ public final class GmailService extends GoogleService {
 
     /**
      * @param userKey DaP user ID
-     * @throws Exception .
-     * @return .
+    * @throws IOException If there was an IO error during parsing exception need to be treated.
+    * @throws still tread the thread till a GeneralSecurityException occurred.
+     * @return a number.
      */
     public Integer displayMessageUnread(final String userKey) throws Exception {
 
