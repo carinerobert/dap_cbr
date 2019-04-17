@@ -18,6 +18,7 @@ import com.google.api.client.util.store.DataStore;
 
 import fr.hoc.dap.server.services.AdminService;
 
+//TODO cbr by Djer |JavaDoc| Documente cette classe **specifique** sans parler du "programe globale". ladocumentation "général" de ton appli pourais se trovuer dnas le README.md
 /**
  * The configuration programme implements a web application
  * that displays users details account on google services.
@@ -27,12 +28,16 @@ import fr.hoc.dap.server.services.AdminService;
  */
 @Controller
 public class AdminControler {
+    //TODO cbr by Djer |JavaDoc| Ne met pas de "@Author" ici tu essayes de préiciser l'auteur de cette attribut, ce qui n'est pas très utile
     /**@author display errors.*/
     private static final Logger LOG = LogManager.getLogger();
 
+    //TODO cbr by Djer |JavaDoc| Il manque la Javadoc pour documenter cette attribut
     @Autowired
     private AdminService admSrv;
 
+    //TODO cbr by Djer |JavaDoc| Il manque la Javadoc pour documenter cette méthode
+    //TODO cbr by Djer |Audit Code| prend en comptel a remarque de CheckStyle ("pourrait être final")
     @RequestMapping("/admin")
     public String admin(ModelMap model) throws GeneralSecurityException, IOException {
         DataStore<StoredCredential> users = admSrv.getUsers();
@@ -41,6 +46,7 @@ public class AdminControler {
         for (String key : keys) {
             StoredCredential value = users.get(key);
             mapUsers.put(key, value);
+          //TODO cbr by Djer |Log4J| Le message de cette log est faux. Ici tu peux indiquer (en Info ou Debug) qu'un "user à été convertie " + key
             LOG.warn("Trying to store a NULL AccessToken for user : " + keys);
 
         }
@@ -49,10 +55,12 @@ public class AdminControler {
         return "admin";
     }
 
+    //TODO cbr by Djer |JavaDoc| Il manque la Javadoc pour documenter cette attribut
     @RequestMapping
     public String deleteUser(final String userkey) throws IOException, GeneralSecurityException {
 
         DataStore<StoredCredential> user = admSrv.deleteUser(userkey);
+      //TODO cbr by Djer |Log4J| Le message de cette log est ambigüe "User " + userkey " deleted" serait mieux
         LOG.warn("Trying to delete unkown user : " + user);
 
         return "redirect:/admin";

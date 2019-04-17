@@ -2,8 +2,7 @@
 
 <head>
 <title>Salut de Dap</title>
-<link rel="stylesheet" type="text/css" th:href="@{css/dap.css}" href="../static/css/dap.css" >	<!--  -->
-
+<link rel="stylesheet" type="text/css" th:href="@{css/dap.css}" href="../static/css/dap.css">
 </head>
 
 <body>
@@ -12,7 +11,6 @@
 	<!-- si dans le modèle il n'y a pas maVar, il affichera Gertrude, ça permet de dev en front le template -->
 	
 	<div>
-
 		<ul>
 		<li th:each="bete : ${bebetes}"><span th:text="${bete}">une des bêtes</span></li>
 			<!--
@@ -20,11 +18,7 @@
 			<li>Autruche</li>
 			<li>Crocodile</li> -->
 		</ul>
-
 	</div>
 
-
 </body>
-
-
 </html>

@@ -18,6 +18,7 @@ import fr.hoc.dap.server.services.GmailService;
  * @since 2019-01-21
  */
 
+//TODO cbr by Djer |JavaDoc| Documente TA classe, l'annotation est déja documentée (par Spring)
 /**
  * Types that carry this annotation are treated as controllers where @RequestMapping methods exists.
  * The value may indicate a suggestion for a logical component name,
@@ -25,6 +26,7 @@ import fr.hoc.dap.server.services.GmailService;
  */
 @RestController
 public class GmailControler {
+    //TODO cbr by Djer |JavaDoc| Les @xxxx ne sont pas pertinent pour javaDocumenter un attribut, seul la description (sans @ devant) est utile ici
     /**
      * @RequestMapping for mapping web requests onto methods in request-handling with flexible method signatures.
      * @return the string needed for mapping.
@@ -38,6 +40,7 @@ public class GmailControler {
      * modifications to the display of the app should be done
      * by overriding this method.
      * <p>
+     * //TODO cbr by Djer |JavaDoc| Le "format" d'une ligne de JavaDoc avec parametre est @paramType **Contexte** Ta description à toi que tu veux (ici tu as une virgule ne trop après le "contexte" (nom du param que tu souhaites décrire))
      * @param userKey, please set for user in the app.
      * @return the number of unread email for a user.
      * @throws still treat the thread till a Exception occurred, treated with a specified message, 

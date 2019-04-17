@@ -36,24 +36,29 @@ import com.google.api.services.calendar.model.Events;
  */
 @Service
 public final class CalendarService extends GoogleService {
-    /**@author house log*/
 
+    //TODO cbr by Djer |JavaDoc| Le @author est inutile
+    /**@author house log*/
     private static final Logger LOG = LogManager.getLogger();
 
     /**
      * Build API client service.
-     * @param get user as a string.
+     * @param userKey get user as a string.
      * @return return userkey as a string.
      * @throws IOException If there was an IO error during parsing exception need to be treated.
     * @throws still tread the thread till a GeneralSecurityException occurred.
      */
+    //TODO cbr by Djer |POO| "buildService" serait mieux comme nom de méthode
     public Calendar getService(final String userKey) throws IOException, GeneralSecurityException {
         NetHttpTransport httpTransport;
         Calendar service = null;
 
         try {
+            //TODO cbr by Djer |Log4J| Contextualise tes messages "Google Calendar service built for user : " + userkey
             LOG.info("getService ok"); // équivaut à logger.info("Message d'information");
         } catch (UncheckedIOException e) {
+            //TODO cbr by Djer |Log4J| Contextualise tes messages "Erro while buildingGoogle Calendar Service for user : " + userkey
+            //TODO cbr by Djer |Log4J| Tu peux mettre ne deuxième parapètre de la methode "error" une Ecception, ainsi Log4J pourra afficher une jolie pile d'éxécution dans la log
             LOG.error("fatal error");
         }
         httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -63,12 +68,13 @@ public final class CalendarService extends GoogleService {
 
     }
 
+    //TODO cbr by Djer |JavaDoc| Ta JavaDoc est denue fausse. Tu n'a plus besoin de "getIsntance" Spring s'en occupe pour toi grace à @Service
     /**
      * Build API client service.
      * @return string of the instance .
      * @throws IOException If there was an IO error during parsing exception need to be treated.
-     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
-     * wich is saved for later retrieval by the #getCause() method.
+     * @throws GeneralSecurityException Still treat the thread till a GeneralSecurityException occurred, 
+     * treated with a specified message, wich is saved for later retrieval by the #getCause() method.
      */
     public CalendarService getInstance() throws IOException, GeneralSecurityException {
         CalendarService service = null;
@@ -76,13 +82,13 @@ public final class CalendarService extends GoogleService {
 
     }
 
-    /** 
-    * @param the next event for a user, as a string..
-    * @param userKey please set for user in the app.
+    //TODO cbr by Djer |JavaDoc| il manque la description de la méthdoe (première ligne)
+    /**
+    * @param nb the next event for a user, as a string.
     * @param userKey recupereation user .
     * @throws IOException If there was an IO error during parsing exception need to be treated.
-    * @throws still treat the thread till a GeneralSecurityException occurred.
-    * @return next event.
+    * @throws GeneralSecurityException still treat the thread till a GeneralSecurityException occurred.
+    * @return next event. //TODO cbr by Djer |JavaDoc| "textual representation of next event(s)" serait mieux
     */
     public String displayNextEvent(final Integer nb, final String userKey)
             throws IOException, GeneralSecurityException {
@@ -113,6 +119,7 @@ public final class CalendarService extends GoogleService {
                     start = event.getStart().getDate();
                 }
                 rdv = rdv + event.getSummary() + "(" + start + ") / ";
+              //TODO cbr by Djer |POO| Pas de SysOut sur un serveur !
                 System.out.printf("%s (%s)\n", event.getSummary(), start);
             }
         }

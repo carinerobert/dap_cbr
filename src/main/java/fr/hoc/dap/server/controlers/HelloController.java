@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
+    //TODO cbr by Djer |JavaDoc| Ne documente pas l'annotation, mais ta méthode. L'anotation est deja JavaDocumentée (par Spring)
     /**
      * @RequestMapping for mapping web requests onto methods in request-handling with flexible method signatures.
      * @return the mapped request.
@@ -30,15 +31,14 @@ public class HelloController {
         return "Greetings from Spring Boot!";
     }
 
+    //TODO cbr by Djer |JavaDoc| Ne documente pas l'annotation, mais ta méthode. L'anotation est deja JavaDocumentée (par Spring)
     /**
      * @RequestMapping for mapping web requests onto methods in request-handling with flexible method signatures.
      * @param theName please fill the field. .
      * @return /bonjour.
      */
-
     @RequestMapping("/bonjour")
     public String direBonjour(@RequestParam("name") final String theName) {
         return "Bonjour" + " " + theName + " !";
-
     }
 }

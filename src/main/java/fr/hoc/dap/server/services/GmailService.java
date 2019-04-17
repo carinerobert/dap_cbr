@@ -35,8 +35,8 @@ import com.google.api.services.gmail.model.Message;
 public final class GmailService extends GoogleService {
 
     /**
-     * @param set the userKey as a string.
-     * @return return userkey as a string.
+     * @param userKey set the userKey as a string.
+     * @return return userkey as a string. //TODO cbr by Djer |JavaDoc| Cette documentation semble fausse
      * @throws GeneralSecurityException cannot connect to google sever.
      * @throws IOException if the credentials.json file cannot be found.
      */
@@ -79,20 +79,20 @@ public final class GmailService extends GoogleService {
 
     /**
      * @param userKey DaP user ID
-    * @throws IOException If there was an IO error during parsing exception need to be treated.
-    * @throws still tread the thread till a GeneralSecurityException occurred.
+     * @throws IOException If there was an IO error during parsing exception need to be treated.
+     * @throws Exception still tread the thread till a GeneralSecurityException occurred.
      * @return a number.
      */
     public Integer displayMessageUnread(final String userKey) throws Exception {
 
         String userId = "me";
-        //        // Print the labels in the user's account.
+      //TODO cbr by Djer |JavaDoc| Ce commentaire n'est PLUS juste
+        // Print the labels in the user's account.
         String query = "is:unread in:inbox";
 
         Integer nbUnreadEmail = listMessagesMatchingQuery(userKey, userId, query);
 
         return nbUnreadEmail;
-
     }
 
 }
