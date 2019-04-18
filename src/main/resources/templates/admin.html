@@ -3,47 +3,39 @@
 <head>
 <title>Dap</title>
 <link rel="stylesheet" type="text/css" th:href="@{css/dap.css}"
-
 	href="../static/css/dap.css">
-
-
 </head>
 
 <body>
 	<span> Bonjour,</span>
-
+	<br />
+	<br />
 	<br />
 	<br />
 
+	<div class="container">
+		<table border="1" width="50%">
+			<tbody>
+				<tr class="ligne-impaire">
+					<td width="10%" align="center">Id</td>
+					<td width="20%" align="center">Token</td>
+					<td width="10%" align="center">Expire(en jours)</td>
+					<td width="20%" align="center">Refresh</td>
+					<td width="10%" align="center">Delete</td>
+				</tr>
 
+				<tr th:each="entry : ${users}">
+					<td th:text="${entry.key}"></td>
+					<td th:text="${entry.value.accessToken}"></td>
+					<!-- TODO cbr by Djer |Thymleaf| Plante si "entry.value.expirationTimeMilliseconds" est null-->
+					<!-- <td th:text=" ${entry.value.expirationTimeMilliseconds /86400000 }"></td> -->
+					<!-- Voici une propisition (de la doc : https://www.baeldung.com/spring-thymeleaf-conditionals) -->
+					<td
+						th:text="${entry.value.expirationTimeMilliseconds != null} ? ${entry.value.expirationTimeMilliseconds/86400000} : 'Inconnu'"></td>
+					<td th:text=" ${entry.value.refreshToken}"></td>
+					<td><a th:href="@{/delete/user(userkey=${entry.key})}">Delete</a></td>
 
-
-	<br />
-	<br />
-
-<div class="container">
-
-	<table border="1" width="50%">
-		<tbody>
-			<tr class="ligne-impaire" >
-				<td width="10%" align="center">Id</td>
-				<td width="20%" align="center">Token</td>
-				<td width="10%" align="center">Expire(en jours)</td>
-				<td width="20%" align="center">Refresh</td>
-				<td width="10%" align="center">Delete</td>
-				
-			</tr>
-
-			<tr th:each="entry : ${users}">
-				<td th:text="${entry.key}"></td>
-				<td th:text="${entry.value.accessToken}"></td>
-				<td th:text=" ${entry.value.expirationTimeMilliseconds /86400000 }"></td>
-				<td th:text=" ${entry.value.refreshToken}"></td>
-				<td><a th:href="@{/delete/user(userkey=${entry.key})}">Delete</a></td>
-				
-
-			
-			<!--  <td>	
+					<!--  <td>	
 			 <a th:href="@{/add_user + $(personId=${entry.key})} " class="btn btn-danger"></a>
 				<form th:action="@{delete_user}" method="post" th:object="${users}">
 					<input type="hidden" th:field="${user/add_user + $(personId=${entry.key})}" />
@@ -56,15 +48,10 @@
 				</form> 		
 			
 			</td>		-->
+				</tr>
+			</tbody>
+		</table>
 
-	</tr>
-		</tbody>
-	</table>
-
-
-</div>
-
+	</div>
 </body>
-
-
 </html>

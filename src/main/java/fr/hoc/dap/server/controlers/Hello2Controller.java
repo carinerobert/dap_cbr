@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class Hello2Controller {
+
+    //TODO cbr by Djer |JavaDoc| Il manque la JavaDoc pour la méthode
     @RequestMapping("/hello2")
     public String hello(ModelMap model) {
 

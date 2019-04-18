@@ -32,6 +32,7 @@ public class Application {
      * @return app result if true.
      * @param ctx ()during parsing.
      */
+    //TODO cbr by Djer |Spring| Cette méthode n'est pas obligatoire, si tu n'as rie a faire faire à Spring après son initialisation, supprime cette méthode
     public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
         return args -> {
 
@@ -47,6 +48,7 @@ public class Application {
     public Configuration createDefault() throws Exception {
         Configuration conf = new Configuration();
         //  conf.setCredentialsFilePath("/credentials_web.json");
+        //TODO cbr by Djer |Design Patern| Pourquoi "masquer" le nom de l'application ?
         conf.setApplicationName("");
 
         return conf;

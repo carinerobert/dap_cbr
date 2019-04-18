@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Global instance for run the application.
  */
 @SpringBootApplication
+//TODO cbr by Djer |Spring| Cette classe n'est plus utile, tu peux la supprimer (de plus c'est un peu "hasardeux d'avoir 2 @SpringBootApplication dnas un même projet)
 abstract class Launcher {
     /**@author */
 

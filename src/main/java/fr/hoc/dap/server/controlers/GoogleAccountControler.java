@@ -40,24 +40,28 @@ import fr.hoc.dap.server.services.GoogleService;
 @Controller
 public class GoogleAccountControler<ActionContext> extends GoogleService {
 
+    //TODO cbr by Djer |JavaDoc| Le @author est inutile
+    //TODO cbr by Djer |JavaDoc| "LOG" ne sert pas QUE à afficher des erreur. Ce concept étant très "classique" la meilleur javaDoc est "Logger."
     /**@author display errors.*/
     private static final Logger LOG = LogManager.getLogger();
 
+    //TODO cbr by Djer |JavaDoc| Ne documente pas ce que "ca fait" mais ce que "c'est". Le nom de la constante etant deja "assez claire" ta javaDoc sera une sorte de répetition.
     /** to protect user's data. **/
     private static final int SENSIBLE_DATA_FIRST_CHAR = 1;
 
+    //TODO cbr by Djer |JavaDoc| Ne documente pas ce que "ca fait" mais ce que "c'est".
     /** to protect user's data. **/
     private static final int SENSIBLE_DATA_LAST_CHAR = 7;
 
     /**
-     * to Handle the Google response :
+     * To Handle the Google response.
      * @param request handle google response by protocole HTTP.
      * @param code (encoded) use by Google, protocole & time request.
      * @param  session HTTP protocole.
      * @return the view ask to display.
      * @throws ServletException When Google account is unable to connected to DaP.
-     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
-     * wich is saved for later retrieval by the #getCause() method.
+     * @throws GeneralSecurityException still treat the thread till a GeneralSecurityException occurred, treated
+     * with a specified message, wich is saved for later retrieval by the #getCause() method.
      */
     @RequestMapping("/oAuth2Callback")
     public String oAuthCallbackoAuthCallback(@RequestParam final String code, final HttpServletRequest request,
@@ -99,8 +103,8 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
      * @param request protocole http for request.
      * @param session activate by the HTTP protocole.
      * @return the view to Display (on Error).
-     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
-     * wich is saved for later retrieval by the #getCause() method.
+     * @throws GeneralSecurityException still treat the thread till a GeneralSecurityException occurred,
+     * treated with a specified message, wich is saved for later retrieval by the #getCause() method.
      */
     @RequestMapping("/account/add/{userId}")
     public String addAccount(@PathVariable final String userId, final HttpServletRequest request,
@@ -144,7 +148,7 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
     }
 
     /**
-     * retrieve the User ID in Session.
+     * Retrieve the User ID in Session.
      * @param session the HTTP Session
      * @return the current User Id in Session
      * @throws ServletException When Google account is unable to connected to DaP.

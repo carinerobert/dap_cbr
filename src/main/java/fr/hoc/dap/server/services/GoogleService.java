@@ -60,8 +60,8 @@ public class GoogleService {
 
     /**
      * @throws IOException If there was an IO error during parsing exception need to be treated.
-     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
-     * wich is saved for later retrieval by the #getCause() method.
+     * @throws GeneralSecurityException still treat the thread till a GeneralSecurityException occurred,
+     * treated with a specified message, wich is saved for later retrieval by the #getCause() method.
      * @return autorisations .
      * @param userKey .
      */
@@ -78,10 +78,11 @@ public class GoogleService {
     /**
      * @return strings.
      * @throws IOException If there was an IO error during parsing exception need to be treated.
-     * @throws still treat the thread till a GeneralSecurityException occurred, treated with a specified message, 
-     * wich is saved for later retrieval by the #getCause() method.
+     * @throws GeneralSecurityException still treat the thread till a GeneralSecurityException occurred,
+     * treated with a specified message, wich is saved for later retrieval by the #getCause() method.
      */
     public GoogleAuthorizationCodeFlow getFlow() throws GeneralSecurityException, IOException {
+      //TODO cbr by Djer |POO| Serait plus propre si l'initialisatio ndes Scopes se trovuait dans le constructeur. Le ArrayList est re-construit à chaque appel de "getFlow" ce qui n'est pas très utile
         // gère les autorisations google.
         scopes = new ArrayList<String>();
         scopes.add(CalendarScopes.CALENDAR_READONLY);
