@@ -25,12 +25,6 @@ import com.google.api.services.people.v1.PeopleServiceScopes;
 import fr.hoc.dap.server.controlers.Configuration;
 
 /**
-* The CalendarService programme implements an application (Dap cmdline)
-* that displays mails & events from an user account on google.
-* it could add, delete or access to the details of user too.
-* @author house_Mecrob
-* @version 1.0
-* @since 2019-01-21
 * public class Service extends Object provide the client view of a Web service.
 * Service acts as a factory of the following : Proxies for a target service endpoint.
 * Instances of Dispatch for dynamic message-oriented invocation of a remote operation.
@@ -47,11 +41,24 @@ public class GoogleService {
     /**
      * .
      */
+    protected GoogleService() {
+        scopes = new ArrayList<String>();
+        scopes.add(CalendarScopes.CALENDAR_READONLY);
+        scopes.add(GmailScopes.GMAIL_READONLY);
+        scopes.add(GmailScopes.GMAIL_LABELS);
+        scopes.add(PeopleServiceScopes.CONTACTS_READONLY);
+        scopes.add(PeopleServiceScopes.USER_EMAILS_READ);
+        scopes.add(PeopleServiceScopes.USERINFO_PROFILE);
+    }
+
+    /**
+     * .
+     */
     @Autowired
     private Configuration conf;
 
     /**
-     * list .
+     * list des scopes services.
      */
     private static List<String> scopes;
 
@@ -82,15 +89,7 @@ public class GoogleService {
      * treated with a specified message, wich is saved for later retrieval by the #getCause() method.
      */
     public GoogleAuthorizationCodeFlow getFlow() throws GeneralSecurityException, IOException {
-      //TODO cbr by Djer |POO| Serait plus propre si l'initialisatio ndes Scopes se trovuait dans le constructeur. Le ArrayList est re-construit à chaque appel de "getFlow" ce qui n'est pas très utile
         // gère les autorisations google.
-        scopes = new ArrayList<String>();
-        scopes.add(CalendarScopes.CALENDAR_READONLY);
-        scopes.add(GmailScopes.GMAIL_READONLY);
-        scopes.add(GmailScopes.GMAIL_LABELS);
-        scopes.add(PeopleServiceScopes.CONTACTS_READONLY);
-        scopes.add(PeopleServiceScopes.USER_EMAILS_READ);
-        scopes.add(PeopleServiceScopes.USERINFO_PROFILE);
         HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         File in = new java.io.File(conf.getCredentialsFilePath());
         Reader targetReader = new FileReader(in);
@@ -105,7 +104,7 @@ public class GoogleService {
     }
 
     /**
-     * @return the conf
+     * @return the configuration.
      */
     public Configuration getConf() {
         return conf;

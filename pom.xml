@@ -16,7 +16,8 @@
 
 	<properties>
 		<pmdVersion>6.4.0</pmdVersion>
-		<!-- TODO cbr by Djer |Maven| la prorpriété "java.version" est un raccourci (Spring Boot) pour les deux attributs suivants -->
+		<!-- TODO cbr by Djer |Maven| la prorpriété "java.version" est un raccourci 
+			(Spring Boot) pour les deux attributs suivants -->
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<java.version>1.8</java.version>
@@ -32,14 +33,24 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-devtools</artifactId>
-			</dependency>
-	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+
 
 		<dependency>
 			<groupId>com.google.api-client</groupId>
@@ -47,7 +58,8 @@
 			<version>1.23.0</version>
 		</dependency>
 
-		<!-- TODO cbr by Djer |Maven| Cette dépendance n'est plus utile depuis que l'ont gère nous même le "oAuth2Callback" (version "serveur")-->
+		<!-- TODO cbr by Djer |Maven| Cette dépendance n'est plus utile depuis 
+			que l'ont gère nous même le "oAuth2Callback" (version "serveur") -->
 		<dependency>
 			<groupId>com.google.oauth-client</groupId>
 			<artifactId>google-oauth-client-jetty</artifactId>

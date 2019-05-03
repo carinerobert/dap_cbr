@@ -14,12 +14,6 @@ import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 
 /**
-* The GmailService programme implements a webapplication.
-* that displays mails & events from an user account on google.
-* it could add, delete or access to the details of user too.
-* @author house_Mecrob
-* @version 1.0
-* @since 2019-01-21
 * public class Service extends Object provide the client view of a Web service.
 * Service acts as a factory of the following : Proxies for a target service endpoint.
 * Instances of Dispatch for dynamic message-oriented invocation of a remote operation.
@@ -36,7 +30,7 @@ public final class GmailService extends GoogleService {
 
     /**
      * @param userKey set the userKey as a string.
-     * @return return userkey as a string. //TODO cbr by Djer |JavaDoc| Cette documentation semble fausse
+     * @return return service for a user. //cbr by Djer |JavaDoc| Cette documentation semble fausse
      * @throws GeneralSecurityException cannot connect to google sever.
      * @throws IOException if the credentials.json file cannot be found.
      */
@@ -86,8 +80,7 @@ public final class GmailService extends GoogleService {
     public Integer displayMessageUnread(final String userKey) throws Exception {
 
         String userId = "me";
-      //TODO cbr by Djer |JavaDoc| Ce commentaire n'est PLUS juste
-        // Print the labels in the user's account.
+
         String query = "is:unread in:inbox";
 
         Integer nbUnreadEmail = listMessagesMatchingQuery(userKey, userId, query);

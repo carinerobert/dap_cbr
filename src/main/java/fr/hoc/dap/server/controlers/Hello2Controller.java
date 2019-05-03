@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Hello2Controller {
 
-    //TODO cbr by Djer |JavaDoc| Il manque la JavaDoc pour la méthode
+    /**
+     * @param model create an item.
+     * @return message.
+     */
     @RequestMapping("/hello2")
-    public String hello(ModelMap model) {
+    public final String hello(final ModelMap model) {
 
         model.addAttribute("maVar", "ToTo");
 

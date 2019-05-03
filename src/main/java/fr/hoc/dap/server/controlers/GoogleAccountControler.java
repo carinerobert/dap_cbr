@@ -26,31 +26,26 @@ import fr.hoc.dap.server.services.GoogleService;
 
 /**
  * The GoogleAccountController programme implements a web application.
- * that displays mails & events from an user account on google.
- * it could add, delete or access to the details of user too.
- * @author house_Mecrob
- * @version 1.0
- * @since 2019-01-21
  * Types that carry this annotation are treated as controllers where @RequestMapping methods exists.
- * The value may indicate a suggestion for a logical component name,
- * to be turned into a Spring bean in case of an autodetected component.
- * @param <ActionContext>
- *
+ * @param <ActionContext> springboot app.
  */
 @Controller
 public class GoogleAccountControler<ActionContext> extends GoogleService {
 
-    //TODO cbr by Djer |JavaDoc| Le @author est inutile
-    //TODO cbr by Djer |JavaDoc| "LOG" ne sert pas QUE à afficher des erreur. Ce concept étant très "classique" la meilleur javaDoc est "Logger."
-    /**@author display errors.*/
+    /**
+     * .
+     */
+    GoogleAccountControler() {
+        super();
+    }
+
+    /** display messages for dev in a file.*/
     private static final Logger LOG = LogManager.getLogger();
 
-    //TODO cbr by Djer |JavaDoc| Ne documente pas ce que "ca fait" mais ce que "c'est". Le nom de la constante etant deja "assez claire" ta javaDoc sera une sorte de répetition.
-    /** to protect user's data. **/
+    /** position of the first character stocken. **/
     private static final int SENSIBLE_DATA_FIRST_CHAR = 1;
 
-    //TODO cbr by Djer |JavaDoc| Ne documente pas ce que "ca fait" mais ce que "c'est".
-    /** to protect user's data. **/
+    /** position of the last character stocken. **/
     private static final int SENSIBLE_DATA_LAST_CHAR = 7;
 
     /**
