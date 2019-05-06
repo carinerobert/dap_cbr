@@ -16,7 +16,7 @@ public class Configuration {
     /** TOKENS_DIRECTORY_PATH indicate where to stock tokens. */
     private static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "/dap/tokens";
     /** retrieve authorization callback from an OAuth2 service provider.*/
-    private static final String O_AUTH_2_CALLBACK_URL = System.getProperty("/oAuth2Callback");
+    private static final String O_AUTH_2_CALLBACK_URL = "/oAuth2Callback";
 
     /** Retrieve the app name. **/
     private String applicationName;

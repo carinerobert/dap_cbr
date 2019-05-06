@@ -67,6 +67,9 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
         final String redirectUri = buildRedirectUri(request, getConf().getoAuth2CallbackUrl());
 
         final String userId = getUserid(session);
+
+        final String loginName = getLoginName(session);
+
         try {
             final GoogleAuthorizationCodeFlow flow = super.getFlow();
             final TokenResponse response = flow.newTokenRequest(decodedCode).setRedirectUri(redirectUri).execute();
@@ -74,14 +77,16 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
             final Credential credential = flow.createAndStoreCredential(response, userId);
             if (null == credential || null == credential.getAccessToken()) {
                 LOG.warn("Trying to store a NULL AccessToken for user : " + userId);
-            }
 
-            if (LOG.isDebugEnabled()) {
-                if (null != credential && null != credential.getAccessToken()) {
-                    LOG.debug("New user credential stored with userId : " + userId + "partial AccessToken : "
-                            + credential.getAccessToken().substring(SENSIBLE_DATA_FIRST_CHAR, SENSIBLE_DATA_LAST_CHAR));
+                if (LOG.isDebugEnabled()) {
+                    if (null != credential && null != credential.getAccessToken()) {
+                        LOG.debug("New user credential stored with userId : " + userId + "partial AccessToken : "
+                                + credential.getAccessToken().substring(SENSIBLE_DATA_FIRST_CHAR,
+                                        SENSIBLE_DATA_LAST_CHAR));
+                    }
                 }
             }
+
             // onSuccess(request, resp, credential);
         } catch (IOException e) {
             LOG.error("Exception while trying to store user Credential", e);
@@ -95,21 +100,25 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
      * Add a Google account (user will be prompt to connect and accept required
      * access).
      * @param userId to store Data on user.
+     * @param loginName to call an account by this identifier.
      * @param request protocole http for request.
      * @param session activate by the HTTP protocole.
      * @return the view to Display (on Error).
      * @throws GeneralSecurityException still treat the thread till a GeneralSecurityException occurred,
      * treated with a specified message, wich is saved for later retrieval by the #getCause() method.
+     * @throws ServletException .
      */
-    @RequestMapping("/account/add/{userId}")
-    public String addAccount(@PathVariable final String userId, final HttpServletRequest request,
-            final HttpSession session) throws GeneralSecurityException {
+    @RequestMapping("/account/add/{userId}/{loginName}")
+    public String addAccount(@PathVariable final String userId, @PathVariable final String loginName,
+            final HttpServletRequest request, final HttpSession session)
+            throws GeneralSecurityException, ServletException {
+        LOG.info("Adding new Acount dapLogin : " + loginName + ", userKey : " + userId);
         String response = "errorOccurs";
         GoogleAuthorizationCodeFlow flow;
         Credential credential = null;
         try {
             flow = super.getFlow();
-            credential = flow.loadCredential(userId);
+            credential = flow.loadCredential(loginName);
 
             if (credential != null && credential.getAccessToken() != null) {
                 response = "AccountAlreadyAdded";
@@ -119,6 +128,7 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
                 authorizationUrl.setRedirectUri(buildRedirectUri(request, getConfiguration().getoAuth2CallbackUrl()));
                 // store userId in session for CallBack Access
                 session.setAttribute("userId", userId);
+                session.setAttribute("loginName", loginName);
                 response = "redirect:" + authorizationUrl.build();
             }
         } catch (IOException e) {
@@ -156,9 +166,28 @@ public class GoogleAccountControler<ActionContext> extends GoogleService {
 
         if (null == userId) {
             LOG.error("userId in Session is NULL in Callback");
-            throw new ServletException("Error when trying to add Google acocunt : userId is NULL is User Session");
+            throw new ServletException("Error when trying to add Google account : userId is NULL is User Session");
         }
         return userId;
+    }
+
+    /**
+     * .
+     * @param session .
+     * @return .
+     * @throws ServletException .
+     */
+    private String getLoginName(final HttpSession session) throws ServletException {
+        String loginName = null;
+        if (null != session && null != session.getAttribute("loginName")) {
+            loginName = (String) session.getAttribute("loginName");
+        }
+
+        if (null == loginName) {
+            LOG.error("loginName in Session is NULL in Callback");
+            throw new ServletException("Error when trying to add Google acocunt : loginName is NULL is User Session");
+        }
+        return loginName;
     }
 
     /**

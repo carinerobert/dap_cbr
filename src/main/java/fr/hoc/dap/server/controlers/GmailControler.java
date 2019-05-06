@@ -19,13 +19,13 @@ public class GmailControler {
     /**
     * @return the number of unread email for a user.
     * @throws Exception still treat the thread till a Exception occurred, treated with a specified message.
-    * @param userKey get the nb of unread email(s).
+    * @param loginName get the nb of unread email(s).
     * wich is saved for later retrieval by the #getCause() method.
     */
     @RequestMapping("/email/nbunread")
-    public Integer index(@RequestParam() final String userKey) throws Exception {
+    public Integer index(@RequestParam() final String loginName) throws Exception {
         // traitement des données
-        Integer nbUnreadEmail = gmailSrv.displayMessageUnread(userKey);
+        Integer nbUnreadEmail = gmailSrv.displayMessageUnread(loginName);
 
         // renvoie des données
         return nbUnreadEmail;

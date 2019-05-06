@@ -9,9 +9,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface DapUserRepository extends CrudRepository<DapUser, Long> {
 
     /**
-    * .
     * @param userKey .
-    * @return .
+    * @return infos from user.
     */
     DapUser findByUserKey(String userKey);
 
